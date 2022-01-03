@@ -37,11 +37,11 @@ async def helpmessage(client, message):
 
 # Anime Command
 @Anibot.on_message(filters.private & filters.incoming & filters.command("anime", prefixes=["/", "."]))
-async def user_anime(client, message):
+async def user_anime(event, message):
    
     if " " in message.text:
         search = message.split(" ", maxsplit=1)[-1]
-        ing = await AnimeBot.send_message(event.chat_id, f"__Searching for__ `{input_str}` __in Anilist__")
+        ing = await AniBot.send_message(event.chat_id, f"__Searching for__ `{input_str}` __in Anilist__")
         variables = {'search': input_str}
         json = requests.post(GRAPHQL, json={'query': anime_query, 'variables': variables}).json()['data'].get('Media', None)
         if json:
@@ -59,8 +59,21 @@ async def user_anime(client, message):
                        os.remove(namae)
                    except:
                        msg += f" [\u2063]({image})"
-                       await ing.edit(msg, buttons=buttons)
-        
-        G
-        
+                       await ing.delete()
+                       await Anibot.send_message(Config.CHANNEL_ID, msg, buttons=buttons)
+    else:
+        message.reply_text("Use `/anime `{Query} to get results\nAnd Try to Get the Japanese Name Then the Result will be More Accurate", quote=True, parse_mode="md")
 
+# Broadcast in Channel or Group
+@Anibot.on_message(filters.private & filters.incoming & filters.command("post", prefixes=["/", "."]))
+async def forward_message(message):
+   if message.reply_to_message is not None:
+      post = message.reply_to_message
+      await post.forward(int(Config.CHANNEL_ID))
+   elif " " in me:
+      post = message.split(" ", maxsplit=1)[-1]
+      await post.forward(int(Config.CHANNEL_ID))
+   else:
+      return await message.reply_text("Bruh, Give Something to Send in Channel!!!")
+
+        
