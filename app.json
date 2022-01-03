@@ -1,0 +1,47 @@
+{
+    "name": "Unzip Kai84 Anime Troop",
+    "description": "This Bot Can unzip The Files from a Url And Upload To A Channel",
+    "keywords": [
+        "unzip",
+        "telegram",
+        "bot",
+        "kai84",
+        "anime-troop"
+    ],
+    "repository": "https://github.com/DragonPower84/unzip-test",
+    "success_url": "https://t.me/Anime_Troop",
+    "env": {
+        "THUMBNAIL_URL": {
+            "description": "",
+            "required": "True"
+        },
+        "BOT_TOKEN": {
+            "description": "",
+            "required": "True"
+        },
+        "API_ID": {
+            "description": "",
+            "required": "True"
+        },
+        "API_HASH": {
+            "description": "",
+            "required": "True"
+        },
+        "UPLOAD_CH_ID": {
+            "description": "",
+            "required": "True"
+        }
+    },
+    "stack": "container",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
