@@ -6,6 +6,7 @@ import os
 # dotenv.load_dotenv()
 
 class Config(object):
+  AUTH_USERS = os.environ.get("AUTH_USERS")
   BOT_TOKEN = os.environ.get("BOT_TOKEN", "2030766680:AAEBO6Slyd3RCeaCQKwlUXXCtmZkdi3BbTc")
   API_ID = int(os.environ.get("API_ID", 3509841))
   API_HASH = os.environ.get("API_HASH", "68a5f01af74e8ef888458fdaea3376eb")
