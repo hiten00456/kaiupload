@@ -1,0 +1,6 @@
+TgCrypto
+Pyrogram
+wget
+pySmartDL
+zipfile36
+jikanpy
