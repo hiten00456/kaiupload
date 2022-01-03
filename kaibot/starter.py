@@ -7,7 +7,7 @@ from pyrogram import (
   idle
 )
 
-class FFclient(Client):
+class Connect(Client):
     def __init__(self):
         Kai().__init__(
             "Kai84AnimeBoT",
