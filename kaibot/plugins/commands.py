@@ -5,6 +5,7 @@ from config import Config
 from kaibot.helping import cmdhelp 
 from ..helpers.search import shorten, anime_query, GRAPHQL
 from ..helpers.other import format_results, conv_to_jpeg
+From ..plugins.media import zipprocessfile
 
 # Start Message
 @Anibot.on_message(filters.private & filters.incoming & filters.command("start", prefixes=["/", "."]))
@@ -80,5 +81,5 @@ async def forward_message(message):
 
 # Process Message
 @Anibot.on_message(filters.private & filters.incoming & filters.regex('http'))
-async def forward_message(message):
+async def majnprocess(message):
       await zipprocessfile(message)
