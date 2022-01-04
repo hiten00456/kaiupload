@@ -3,6 +3,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from .. import Anibot, LOGGER
 from config import Config
 from kaibot.helping import cmdhelp 
+from ..helpers.search import shorten, anime_query, GRAPHQL
+from ..helpers.other import format_results, conv_to_jpeg
 
 # Start Message
 @Anibot.on_message(filters.private & filters.incoming & filters.command("start", prefixes=["/", "."]))
@@ -76,4 +78,7 @@ async def forward_message(message):
    else:
       return await message.reply_text("Bruh, Give Something to Send in Channel!!!")
 
-        
+# Process Message
+@Anibot.on_message(filters.private & filters.incoming & filters.regex('http'))
+async def forward_message(message):
+      await zipprocessfile(message)
