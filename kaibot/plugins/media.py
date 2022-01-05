@@ -1,8 +1,8 @@
-from ..helpers.progress import progres_for_pyrogram
+from ..helpers.progress import progress_for_pyrogram
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import Config
-from .. import LOGGER
+from .. import Anibot, LOGGER
 import os
 import zipfile
 import time
@@ -11,7 +11,7 @@ import shutil
 from pySmartDL import SmartDL
 from pyrogram.errors import FloodWait
 
-async def zipprocessfile(message):
+async def zipprocessfile(bot, message):
      link = message.text
      if url.find("zip"):
         m = await message.reply_text("⚡", reply_to_message_id=message.message_id)
@@ -40,5 +40,26 @@ async def zipprocessfile(message):
             os.remove("contents.txt")
         else:
             await message.reply_text(ans).
-        # extracted_files = [i async for i in absolute_paths(dir_name)]
+        ok = glob.glob(dir_name/*.[ "mkv", "mp4" ])
+        files = [*sorted(ok)]
+        for file in files:
+               try:
+                 start = time.time()
+                 check = await msg.reply(f"**⚡Uploading⚡**")
+                 LOGGER.info(f"Uploading - {file}")
+                 await Anibot.send_document(
+                    chat_id=Config.CHANNEL_ID,
+                    document=file,
+                    caption=f"{file}\n\n**❍ Uploaded By @Anime_Troop**",
+                    #thumb=thum,
+                    quote=False, 
+                    progress=progress_for_pyrogram,
+                    progress_args=(bot, check, "🅄🄿🄻🄾🄰🄳🄸🄽🄶", start),
+                    disable_notification=False
+                  )
+               except Exception as e:
+                    await message.reply_text(e)
+                    
+     
+
             
