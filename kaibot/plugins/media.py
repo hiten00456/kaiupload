@@ -39,8 +39,6 @@ async def zipprocessfile(message):
             await ch.delete()
             os.remove("contents.txt")
         else:
-            await message.reply(ans)
-            await con_message.delete()
+            await message.reply_text(ans).
         # extracted_files = [i async for i in absolute_paths(dir_name)]
-            fileExtensions = [ "mkv", "mp4" ]
-            listOfFiles    = []
+            
