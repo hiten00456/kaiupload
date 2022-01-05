@@ -19,12 +19,16 @@ async def zipprocessfile(bot, message):
         obj.start()
         dl_path = obj.get_dest()
         filename = dl_path.split("/")[-1]
+        if not os.path.exists("extracted"):
+              os.mkdir("extracted")
+        else:
+              pass
         await m.edit_text(f"{filename} Downloaded Successful.\nNow Processing The File", reply_to_message_id=message.message_id)
         LOGGER.info(f"Downloaded in {dl_path}")
         with zipfile.ZipFile(path, 'r') as zip_files:
                 contents = zip_files.namelist()
-                zip_ref.extractall("downloads")
-        dir_name = dl_path.replace(".zip", "")
+                zip_ref.extractall("extracted")
+        dir_name = dl_path.replace(f"/downloads/{filename}", "/extracted/{filename}")
         constr = ""
         for a in contents:
             b = a.replace(f"{dir_name}/", "")
@@ -57,9 +61,14 @@ async def zipprocessfile(bot, message):
                     progress_args=(bot, check, "🅄🄿🄻🄾🄰🄳🄸🄽🄶", start),
                     disable_notification=False
                   )
-               except Exception as e:
-                    await message.reply_text(e)
-                    
-     
-
-            
+               except FloodWait as e:
+                  await message.reply_text(e)
+                  time.sleep(e.x)
+        await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
+        time.sleep(5)
+        if os.path.isdir("downloads"):
+                 shutil.rmtree("downloads")
+            if os.path.isdir("extracted"):
+                 shutil.rmtree("extracted")
+     else:
+        return await message.reply_text("This Is Not A Zip File. \nSend A Link Which Has zip in the url in it.", reply_to_message_id=message.message_id)      
