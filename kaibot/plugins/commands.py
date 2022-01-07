@@ -72,14 +72,16 @@ async def user_anime(event, message):
 async def forward_message(message):
    if message.reply_to_message is not None:
       post = message.reply_to_message
-      await post.forward(int(Config.CHANNEL_ID))
-   elif " " in me:
-      post = message.split(" ", maxsplit=1)[-1]
-      await post.forward(int(Config.CHANNEL_ID))
+      await post.forward(Config.CHANNEL_ID)
+   #elif " " in message:
+   #   post = message.split(" ", maxsplit=1)[-1]
+   #   await post.forward(Config.CHANNEL_ID)
    else:
-      return await message.reply_text("Bruh, Give Something to Send in Channel!!!")
+      await message.reply_text("Bruh, Give Something to Send in Channel!!!")
 
 # Process Message
 @Anibot.on_message(filters.private & filters.incoming & filters.regex('http'))
 async def majnprocess(message):
+      if message.from_user.id not in Config.AUTH_USERS:
+            return await message.reply_text("Sorry, But Can U Fuck Get Out Of This Bot. U Can't Use This Bot")
       await zipprocessfile(message)
