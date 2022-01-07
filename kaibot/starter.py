@@ -1,6 +1,7 @@
 import asyncio
+import wget
 import logging
-from os import path
+from os import path, system
 from config import Config
 from pyrogram import (
   Client, 
@@ -23,7 +24,8 @@ class Connect(Client):
         await Kai().start()
         self.bot_info  = await self.get_me()
         logging.info(f"@{self.bot_info.username} Is Working Now")
+        system(f"wget {Config.THUMBNAIL} -O "thumb.jpeg")
         await idle()
     
     def run(self):
-        asyncio.get_event_loop().run_until_complete(self.__run()
+        asyncio.get_event_loop().run_until_complete(self.__run())
