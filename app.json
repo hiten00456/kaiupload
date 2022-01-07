@@ -12,23 +12,29 @@
     "success_url": "https://t.me/Anime_Troop",
     "env": {
         "THUMBNAIL_URL": {
-            "description": "",
+            "description": "The Thumbnail from any Site",
             "required": "True"
+            "value": "https://telegra.ph/file/2d9f8efcacbda9fb72c4e.jpg"
+        },
+        "OWNER": {
+            "description": "Your Telegram ID",
+            "required": "True",
+            "value": "1477711713"
         },
         "BOT_TOKEN": {
-            "description": "",
+            "description": "Get From @BotFather in Telegram",
             "required": "True"
         },
         "API_ID": {
-            "description": "",
+            "description": "Your API ID From my.telegram.org",
             "required": "True"
         },
         "API_HASH": {
-            "description": "",
+            "description": "Your API Hash From my.telegram.org",
             "required": "True"
         },
         "UPLOAD_CH_ID": {
-            "description": "",
+            "description": "The Channel id Where U Want To Upload The Content",
             "required": "True"
         }
     },
