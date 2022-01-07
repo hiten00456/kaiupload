@@ -44,25 +44,29 @@ async def zipprocessfile(bot, message):
             os.remove("contents.txt")
         else:
             await message.reply_text(ans).
-        ok = glob.glob(dir_name/*.[ "mkv", "mp4" ])
-        files = [*sorted(ok)]
+        ok = []
+        for ext in ('*.mp4', '*.mkv'):
+             ok.extend(glob.glob(os.path.join(dir_name, ext)))
+        #ok = glob.glob('*.mkv') + glob.glob('*.mp4')
+        files = ok.sort()
+        thum = "thumb.jpeg"
         for file in files:
                try:
                  start = time.time()
-                 check = await msg.reply(f"**⚡Uploading⚡**")
+                 check = await Anibot.send_text(chat_id=Config.CHANNEL_ID, text="Uploading New Anime")
                  LOGGER.info(f"Uploading - {file}")
                  await Anibot.send_document(
                     chat_id=Config.CHANNEL_ID,
                     document=file,
-                    caption=f"{file}\n\n**❍ Uploaded By @Anime_Troop**",
-                    #thumb=thum,
+                    caption=f"◎`{file}`\n\n**⌬ Uploaded By @Anime_Troop**",
+                    thumb=thum,
+                    force_document=True,
                     quote=False, 
                     progress=progress_for_pyrogram,
                     progress_args=(bot, check, "🅄🄿🄻🄾🄰🄳🄸🄽🄶", start),
                     disable_notification=False
                   )
                except FloodWait as e:
-                  await message.reply_text(e)
                   time.sleep(e.x)
         await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
         time.sleep(5)
