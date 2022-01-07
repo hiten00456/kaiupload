@@ -16,7 +16,7 @@ async def progress_for_pyrogram(
   total,
   bot,
   ud_type,
-  message,
+  check,
   start
 ):
   now = time.time()
@@ -44,12 +44,12 @@ async def progress_for_pyrogram(
       estimated_total_time if estimated_total_time != '' else "0 s"
     )
     try:
-      await message.edit_text(
+      await check.edit_text(
         text="{}\n {}".format(
           ud_type,
           tmp
         ),
-        parse_mode="markdown"
+        parse_mode="md"
       )
     except:
       pass
