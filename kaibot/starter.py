@@ -24,7 +24,7 @@ class Connect(Client):
         await Kai().start()
         self.bot_info  = await self.get_me()
         logging.info(f"@{self.bot_info.username} Is Working Now")
-        system(f"wget {Config.THUMBNAIL} -O "thumb.jpeg")
+        system(f"wget {Config.THUMBNAIL} -O thumb.jpeg")
         await idle()
     
     def run(self):
