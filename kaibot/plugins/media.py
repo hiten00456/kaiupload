@@ -31,11 +31,12 @@ async def zipprocessfile(bot, message):
         for list in constr:
             count += 1
         countt = await message.reply_text(f"Found {count} files to upload")
-        ok = []
-        for ext in ('*.mp4', '*.mkv'):
-             ok.extend(glob.glob(os.path.join(dir_name, ext)))
-        #ok = glob.glob('*.mkv') + glob.glob('*.mp4')
-        files = ok.sort()
+        #ok = []
+        #for ext in ('*.mp4', '*.mkv'):
+        #     ok.extend(glob.glob(os.path.join(dir_name, ext)))
+        ok = glob.glob(f"{dir_name}/*.mkv")
+        files = [*sorted(ok)]
+        #files = ok.sort()
         thum = "thumb.jpeg"
         for file in files:
                try:
