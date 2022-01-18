@@ -28,7 +28,7 @@ async def zipprocessfile(bot, message):
         with zipfile.ZipFile(path, 'r') as zip_files:
                 contents = zip_files.namelist()
                 zip_ref.extractall("extracted")
-        dir_name = dl_path.replace(f"/downloads/{filename}", "/extracted/{filename}")
+        dir_name = dl_path.replace(f"/downloads/{filename}", f"/extracted/{filename}")
         constr = ""
         for a in contents:
             b = a.replace(f"{dir_name}/", "")
