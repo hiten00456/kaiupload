@@ -10,7 +10,7 @@ from pyrogram import (
 
 class Kai84AnimeBoT(Client):
     def __init__(self):
-        kai().__init__(
+        super().__init__(
             "Kai84AnimeBoT",
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
