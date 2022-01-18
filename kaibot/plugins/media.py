@@ -1,5 +1,4 @@
 from ..helpers.progress import progress_for_pyrogram
-from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import Config
 from .. import Anibot, LOGGER
@@ -19,6 +18,7 @@ async def zipprocessfile(message):
         obj.start()
         dl_path = obj.get_dest()
         filename = dl_path.split("/")[-1]
+        extens = filename.split(".")[-1]
         if not os.path.exists("extracted"):
             os.mkdir("extracted")
         else:
@@ -29,6 +29,7 @@ async def zipprocessfile(message):
                 contents = zip_files.namelist()
                 zip_ref.extractall("extracted")
         dir_name = dl_path.replace(f"/downloads/{filename}", f"/extracted/{filename}")
+        dir_name = dir_name.replace(extens, "")
         constr = ""
         for a in contents:
             b = a.replace(f"{dir_name}/", "")
@@ -45,6 +46,7 @@ async def zipprocessfile(message):
         else:
             await message.reply_text(ans)
         ok = []
+        
         for ext in ('*.mp4', '*.mkv'):
              ok.extend(glob.glob(os.path.join(dir_name, ext)))
         #ok = glob.glob('*.mkv') + glob.glob('*.mp4')
@@ -53,7 +55,7 @@ async def zipprocessfile(message):
         for file in files:
                try:
                  start = time.time()
-                 check = await Anibot.send_text(chat_id=Config.CHANNEL_ID, text="Uploading New Anime")
+                 check = await Anibot.send_text(chat_id=Config.CHANNEL_ID, text=f"Uploading {file}")
                  LOGGER.info(f"Uploading - {file}")
                  await Anibot.send_document(
                     chat_id=Config.CHANNEL_ID,
@@ -69,7 +71,11 @@ async def zipprocessfile(message):
                except FloodWait as e:
                   time.sleep(e.x)
         await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
-        time.sleep(7)
+        if check:
+             await check.delete()
+        else:
+             pass
+        time.sleep(8)
         if os.path.isdir("downloads"):
               shutil.rmtree("downloads")
         if os.path.isdir("extracted"):
