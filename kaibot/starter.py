@@ -24,7 +24,7 @@ class Kai84AnimeBoT(Client):
         await super().start()
         self.bot_info  = await self.get_me()
         logging.info(f"@{self.bot_info.username} Is Working Now")
-        system(f"wget {Config.THUMBNAIL} -O thumb.jpeg")
+        wget.download(Config.THUMBNAIL, "thumb.jpeg")
         await idle()
     
     def run(self):
