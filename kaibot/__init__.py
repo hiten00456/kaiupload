@@ -1,5 +1,5 @@
 import logging
-from .client import Connect
+from .starter import Connect
 
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
