@@ -10,7 +10,7 @@ from pyrogram import (
 
 class Connect(Client):
     def __init__(self):
-        Kai().__init__(
+        kai().__init__(
             "Kai84AnimeBoT",
             api_id=Config.API_ID,
             api_hash=Config.API_HASH,
@@ -21,7 +21,7 @@ class Connect(Client):
         bot_info = None
 
     async def __run(self):
-        await Kai().start()
+        await kai().start()
         self.bot_info  = await self.get_me()
         logging.info(f"@{self.bot_info.username} Is Working Now")
         system(f"wget {Config.THUMBNAIL} -O thumb.jpeg")
