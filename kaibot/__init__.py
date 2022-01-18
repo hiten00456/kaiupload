@@ -1,5 +1,5 @@
 import logging
-from .starter import Connect
+from .starter import Kai84AnimeBoT
 
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
@@ -7,4 +7,4 @@ logging.basicConfig(level=logging.INFO,
 
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-Anibot = Connect()
+Anibot = Kai84AnimeBoT()
