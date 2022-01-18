@@ -84,7 +84,8 @@ async def forward_message(client, message):
 # Process Message
 @Anibot.on_message(filters.private & filters.incoming & filters.regex('http'))
 async def majnprocess(bot, message):
-      if message.from_user.id not in Config.AUTH_USERS:
+      user_id = f"{message.from_user.id}"
+      if user_id not in Config.AUTH_USERS:
            await message.reply_text("**Sorry, But Can U Fuck Get Out Of This Bot. \n\nU Can't Use This Bot**")
            return
       else:
