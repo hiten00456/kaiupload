@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from .. import Anibot, LOGGER
 from config import Config
-from kaibot.helping import cmdhelp 
+# from kaibot.helping import cmdhelp 
 from ..helpers.search import shorten, anime_query, GRAPHQL
 from ..helpers.other import format_results, conv_to_jpeg
 from ..plugins.media import zipprocessfile
@@ -28,7 +28,7 @@ async def start_message(client, message):
 @Anibot.on_message(filters.private & filters.incoming & filters.command("help", prefixes=["/", "."]))
 async def helpmessage(client, message):
     await message.reply_text(
-    text=f"{Cmdhelp.HELP_TXT}\n\n**Developed From Sratch By @Kai_8_4.**",
+    text=f"Nothin Here. Just a Simple Bot\n\n**Developed From Sratch By @Kai_8_4.**",
     quote=True,
     parse_mode="md",
     reply_markup=InlineKeyboardMarkup(
