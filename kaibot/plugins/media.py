@@ -21,7 +21,7 @@ async def zipprocessfile(bot, message):
         LOGGER.info(dl_path)
         filename = dl_path.split("/")[-1]
         await m.delete()
-        await message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+        sm = await message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
         LOGGER.info(f"Downloaded in {dl_path}")
         with zipfile.ZipFile(dl_path, 'r') as zip_files:
                 zip_files.extractall("downloads")
@@ -57,11 +57,8 @@ async def zipprocessfile(bot, message):
                except FloodWait as e:
                   time.sleep(e.x)
         await countt.delete()
+        await sm.delete()
         await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
-        if check:
-             await check.delete()
-        else:
-             pass
         time.sleep(8)
         if os.path.isdir("downloads"):
               shutil.rmtree("downloads")
