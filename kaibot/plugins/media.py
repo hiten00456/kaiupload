@@ -20,13 +20,8 @@ async def zipprocessfile(bot, message):
         dl_path = obj.get_dest()
         LOGGER.info(dl_path)
         filename = dl_path.split("/")[-1]
-        if obj.isSuccessful() == True:
-             await m.delete()
-             await message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
-             LOGGER.info(f"Downloaded in {dl_path}")
-        else: 
-             await m.edit_text(f"Got Some Error while Downloading `{url}`")
-             os.remove(dl_path)
+        await m.edit_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+        LOGGER.info(f"Downloaded in {dl_path}")
         time.sleep(2)
         with zipfile.ZipFile(dl_path, 'r') as zip_files:
                 zip_files.extractall("downloads")
@@ -36,7 +31,6 @@ async def zipprocessfile(bot, message):
         for list in constr:
             count += 1
         countt = await message.reply_text(f"Found {count} files to upload")
-
         ok = []
         for ext in ('*.mp4', '*.mkv'):
              ok.extend(glob.glob(os.path.join(dir_name, ext)))
