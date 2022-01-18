@@ -60,7 +60,7 @@ async def user_anime(event, message):
                        await AnimeBot.send_file(event.chat_id, namae, caption=msg, buttons=buttons, reply_to=event.id, force_document=False)
                        await ing.delete()
                        os.remove(namae)
-                   except:
+                  except:
                        msg += f" [\u2063]({image})"
                        await ing.delete()
                        await Anibot.send_message(Config.CHANNEL_ID, msg, buttons=buttons)
