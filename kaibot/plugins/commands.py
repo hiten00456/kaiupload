@@ -1,3 +1,5 @@
+import requests
+import json
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from .. import Anibot, LOGGER
