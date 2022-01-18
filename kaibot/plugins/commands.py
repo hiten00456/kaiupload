@@ -5,7 +5,7 @@ from config import Config
 from kaibot.helping import cmdhelp 
 from ..helpers.search import shorten, anime_query, GRAPHQL
 from ..helpers.other import format_results, conv_to_jpeg
-From ..plugins.media import zipprocessfile
+from ..plugins.media import zipprocessfile
 
 # Start Message
 @Anibot.on_message(filters.private & filters.incoming & filters.command("start", prefixes=["/", "."]))
