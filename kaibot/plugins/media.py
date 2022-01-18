@@ -13,9 +13,10 @@ from pyrogram.errors import FloodWait
 async def zipprocessfile(bot, message):
      url = message.text
      if url.find("zip"):
-        m = await message.reply_text("⚡", reply_to_message_id=message.message_id)
-        obj = SmartDL(url, Config.DL_LOCATION)
+        m = await message.reply_text("Downloading Your File", reply_to_message_id=message.message_id)
+        obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
         obj.start()
+        tt = obj.get_dl_time(human=True)
         dl_path = obj.get_dest()
         filename = dl_path.split("/")[-1]
         extens = filename.split(".")[-1]
@@ -23,7 +24,10 @@ async def zipprocessfile(bot, message):
             os.mkdir("extracted")
         else:
             pass
-        await m.edit_text(f"{filename} Downloaded Successful.\nNow Processing The File", reply_to_message_id=message.message_id)
+        if obj.isSuccessful():
+             await m.edit_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+        else:
+             await m.edit_text(f"Got Some Error while Downloading `{url}`")
         LOGGER.info(f"Downloaded in {dl_path}")
         with zipfile.ZipFile(path, 'r') as zip_files:
                 contents = zip_files.namelist()
