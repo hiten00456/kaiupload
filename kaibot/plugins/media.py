@@ -25,7 +25,7 @@ async def zipprocessfile(bot, message):
             os.mkdir("extracted")
         else:
             pass
-        if (obj.isSuccessful() == True) && (os.path.exists(dl_path) == True):
+        if obj.isSuccessful():
              await m.edit_text(f"`{dl_path}` Downloaded Successful in {tt}.\n**Now Processing The File**")
         else:
              await m.edit_text(f"Got Some Error while Downloading `{url}`")
