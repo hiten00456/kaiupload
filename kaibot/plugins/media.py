@@ -21,31 +21,21 @@ async def zipprocessfile(bot, message):
         LOGGER.info(dl_path)
         filename = dl_path.split("/")[-1]
         if obj.isSuccessful() == True:
-             await m.edit_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+             await m.delete()
+             await message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+             LOGGER.info(f"Downloaded in {dl_path}")
         else: 
              await m.edit_text(f"Got Some Error while Downloading `{url}`")
              os.remove(dl_path)
-        LOGGER.info(f"Downloaded in {dl_path}")
-
+        time.sleep(2)
         with zipfile.ZipFile(dl_path, 'r') as zip_files:
-                contents = zip_files.namelist()
                 zip_files.extractall("downloads")
         dir_name = dl_path.replace(".zip", "")
-        constr = ""
-        for a in contents:
-            b = a.replace(f"{dir_name}/", "")
-            constr += b + "\n"
-        ans = "**Contents** \n\n" + constr
-        if len(ans) > 4096:
-            ch = await message.reply_text("Checking Contents for you... \n\nSending as file...")
-            f = open("contents.txt", "w+")
-            f.write(ans)
-            f.close()
-            await message.reply_document("contents.txt")
-            await ch.delete()
-            os.remove("contents.txt")
-        else:
-            await message.reply_text(ans)
+        constr = os.listdir(dir_name)
+        count = 0
+        for list in constr:
+            count += 1
+        countt = await message.reply_text(f"Found {count} files to upload")
 
         ok = []
         for ext in ('*.mp4', '*.mkv'):
@@ -71,6 +61,7 @@ async def zipprocessfile(bot, message):
                   )
                except FloodWait as e:
                   time.sleep(e.x)
+        await countt.delete()
         await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
         if check:
              await check.delete()
