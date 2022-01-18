@@ -1,8 +1,7 @@
 FROM python:3.9.7-slim-buster
 
 RUN apt update && apt upgrade -y \
-  && apt -y install python3-pip \
-  && pip3 install glob
+  && apt -y install python3-pip
 
 WORKDIR .
 COPY . .
