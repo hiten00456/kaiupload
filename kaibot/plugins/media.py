@@ -71,8 +71,8 @@ async def zipprocessfile(bot, message):
         await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
         time.sleep(7)
         if os.path.isdir("downloads"):
-                 shutil.rmtree("downloads")
-            if os.path.isdir("extracted"):
-                 shutil.rmtree("extracted")
+              shutil.rmtree("downloads")
+        if os.path.isdir("extracted"):
+              shutil.rmtree("extracted")
      else:
         return await message.reply_text("This Is Not A Zip File. \nSend A Link Which Has zip in the url in it.", reply_to_message_id=message.message_id)      
