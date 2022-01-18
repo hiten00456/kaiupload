@@ -20,13 +20,9 @@ async def zipprocessfile(bot, message):
         dl_path = obj.get_dest()
         LOGGER.info(dl_path)
         filename = dl_path.split("/")[-1]
-        await bot.edit_message_text(
-                     chat_id=message.chat.id,
-                     message_id=m.message_id,
-                     text=f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**"
-              )
+        await m.delete()
+        await message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
         LOGGER.info(f"Downloaded in {dl_path}")
-        time.sleep(2)
         with zipfile.ZipFile(dl_path, 'r') as zip_files:
                 zip_files.extractall("downloads")
         dir_name = dl_path.replace(".zip", "")
