@@ -43,7 +43,7 @@ async def zipprocessfile(bot, message):
             await ch.delete()
             os.remove("contents.txt")
         else:
-            await message.reply_text(ans).
+            await message.reply_text(ans)
         ok = []
         for ext in ('*.mp4', '*.mkv'):
              ok.extend(glob.glob(os.path.join(dir_name, ext)))
