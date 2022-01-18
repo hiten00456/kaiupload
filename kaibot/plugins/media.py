@@ -14,22 +14,24 @@ async def zipprocessfile(bot, message):
      url = message.text
      if url.find("zip"):
         m = await message.reply_text("Downloading Your File", reply_to_message_id=message.message_id)
-        obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
+        obj = SmartDL(url, dest=Config.DL_LOCATION, progress_bar=False)
         obj.start()
         tt = obj.get_dl_time(human=True)
         dl_path = obj.get_dest()
+        LOGGER.info(dl_path)
         filename = dl_path.split("/")[-1]
         extens = filename.split(".")[-1]
         if not os.path.exists("extracted"):
             os.mkdir("extracted")
         else:
             pass
-        if obj.isSuccessful():
-             await m.edit_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+        if (obj.isSuccessful() == True) && (os.path.exists(dl_path) == True):
+             await m.edit_text(f"`{dl_path}` Downloaded Successful in {tt}.\n**Now Processing The File**")
         else:
              await m.edit_text(f"Got Some Error while Downloading `{url}`")
+             os.remove(dl_path)
         LOGGER.info(f"Downloaded in {dl_path}")
-        with zipfile.ZipFile(path, 'r') as zip_files:
+        with zipfile.ZipFile(dl_path, 'r') as zip_files:
                 contents = zip_files.namelist()
                 zip_ref.extractall("extracted")
         dir_name = dl_path.replace(f"/downloads/{filename}", f"/extracted/{filename}")
