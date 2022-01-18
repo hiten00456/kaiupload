@@ -11,5 +11,5 @@ class Config(object):
   API_ID = int(os.environ.get("API_ID"))
   API_HASH = os.environ.get("API_HASH")
   THUMBNAIL = os.environ.get("THUMBNAIL_URL", "https://telegra.ph/file/5bb45f4b5255252a67c07.jpg")
-  CHANNEL_ID = int(os.environ.get("UPLOAD_CH_ID", -1001447866756))
+  CHANNEL_ID = int(os.environ.get("UPLOAD_CH_ID",))
   DL_LOCATION = "./downloads/"
