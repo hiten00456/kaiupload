@@ -10,7 +10,7 @@ import shutil
 from pySmartDL import SmartDL
 from pyrogram.errors import FloodWait
 
-async def zipprocessfile(message):
+async def zipprocessfile(bot, message):
      url = message.text
      if url.find("zip"):
         m = await message.reply_text("⚡", reply_to_message_id=message.message_id)
@@ -63,7 +63,7 @@ async def zipprocessfile(message):
                     caption=f"◎`{file}`\n\n**⌬ Uploaded By @Anime_Troop**",
                     thumb=thum,
                     force_document=True,
-                    quote=False, 
+                    quote=True, 
                     progress=progress_for_pyrogram,
                     progress_args=(bot, check, "🅄🄿🄻🄾🄰🄳🄸🄽🄶", start),
                     disable_notification=False
