@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from config import Config
 from .. import Anibot, LOGGER
 import os
-import zipfile
+import zipfile36 as zipfile
 import time
 import glob
 import shutil
