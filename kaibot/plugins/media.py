@@ -14,7 +14,7 @@ async def zipprocessfile(bot, message):
      url = message.text
      if url.find("zip"):
         m = await message.reply_text("Downloading Your File", reply_to_message_id=message.message_id)
-        obj = SmartDL(url, dest=Config.DL_LOCATION, progress_bar=False)
+        obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
         obj.start()
         tt = obj.get_dl_time(human=True)
         dl_path = obj.get_dest()
