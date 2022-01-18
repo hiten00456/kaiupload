@@ -8,7 +8,7 @@ from pyrogram import (
   idle
 )
 
-class Connect(Client):
+class Kai84AnimeBoT(Client):
     def __init__(self):
         kai().__init__(
             "Kai84AnimeBoT",
@@ -16,7 +16,7 @@ class Connect(Client):
             api_hash=Config.API_HASH,
             bot_token=Config.BOT_TOKEN,
             workdir="./",
-            plugins=dict(root="kaibot.plugins")
+            plugins=dict(root="kaibot/plugins")
         )
         bot_info = None
 
