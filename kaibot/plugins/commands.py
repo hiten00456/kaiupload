@@ -71,7 +71,7 @@ async def user_anime(event, message):
 
 # Broadcast in Channel or Group
 @Anibot.on_message(filters.private & filters.incoming & filters.command("post", prefixes=["/", "."]))
-async def forward_message(message):
+async def forward_message(client, message):
    if message.reply_to_message is not None:
       post = message.reply_to_message
       await post.forward(Config.CHANNEL_ID)
@@ -83,7 +83,9 @@ async def forward_message(message):
 
 # Process Message
 @Anibot.on_message(filters.private & filters.incoming & filters.regex('http'))
-async def majnprocess(message):
+async def majnprocess(bot, message):
       if message.from_user.id not in Config.AUTH_USERS:
-            return await message.reply_text("Sorry, But Can U Fuck Get Out Of This Bot. U Can't Use This Bot")
-      await zipprocessfile(message)
+           await message.reply_text("**Sorry, But Can U Fuck Get Out Of This Bot. \n\nU Can't Use This Bot**")
+           return
+      else:
+           await zipprocessfile(bot, message)
