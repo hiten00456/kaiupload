@@ -12,7 +12,7 @@ from pySmartDL import SmartDL
 from pyrogram.errors import FloodWait
 
 async def zipprocessfile(bot, message):
-     link = message.text
+     url = message.text
      if url.find("zip"):
         m = await message.reply_text("⚡", reply_to_message_id=message.message_id)
         obj = SmartDL(url, Config.DL_LOCATION)
@@ -20,9 +20,9 @@ async def zipprocessfile(bot, message):
         dl_path = obj.get_dest()
         filename = dl_path.split("/")[-1]
         if not os.path.exists("extracted"):
-              os.mkdir("extracted")
+            os.mkdir("extracted")
         else:
-              pass
+            pass
         await m.edit_text(f"{filename} Downloaded Successful.\nNow Processing The File", reply_to_message_id=message.message_id)
         LOGGER.info(f"Downloaded in {dl_path}")
         with zipfile.ZipFile(path, 'r') as zip_files:
@@ -69,7 +69,7 @@ async def zipprocessfile(bot, message):
                except FloodWait as e:
                   time.sleep(e.x)
         await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
-        time.sleep(5)
+        time.sleep(7)
         if os.path.isdir("downloads"):
                  shutil.rmtree("downloads")
             if os.path.isdir("extracted"):
