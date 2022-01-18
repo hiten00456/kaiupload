@@ -11,7 +11,7 @@ import shutil
 from pySmartDL import SmartDL
 from pyrogram.errors import FloodWait
 
-async def zipprocessfile(bot, message):
+async def zipprocessfile(message):
      url = message.text
      if url.find("zip"):
         m = await message.reply_text("⚡", reply_to_message_id=message.message_id)
