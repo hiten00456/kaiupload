@@ -89,4 +89,11 @@ async def majnprocess(bot, message):
            await message.reply_text("**Sorry, But Can U Fuck Get Out Of This Bot. \n\nU Can't Use This Bot**")
            return
       else:
-           await zipprocessfile(bot, message)
+           await message.reply_text(
+                 text="Choose Your Option", 
+                 reply_markup=InlineKeyboardMarkup(
+                       [
+                           [InlineKeyboardButton("⚡ Thunder ⚡", callback_data="summer")],
+                       ],
+                  ),
+             )
