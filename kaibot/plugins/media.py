@@ -1,5 +1,6 @@
 from ..helpers.progress import progress_for_pyrogram
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram import Client, filters
 from config import Config
 from .. import Anibot, LOGGER
 import os
@@ -10,10 +11,13 @@ import shutil
 from pySmartDL import SmartDL
 from pyrogram.errors import FloodWait
 
+process_filter = filters.create(lambda _, __, query: query.data.lower() == "summer")
+
+@Client.on_callback_query(process_filter)
 async def zipprocessfile(bot, message):
      url = message.text
      if url.find("zip"):
-        m = await message.reply_text("Downloading Your File")
+        m = await message.reply("Downloading...", quote=True)
         obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
         obj.start()
         tt = obj.get_dl_time(human=True)
