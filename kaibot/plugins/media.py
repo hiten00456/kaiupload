@@ -14,10 +14,10 @@ from pyrogram.errors import FloodWait
 process_filter = filters.create(lambda _, __, query: query.data.lower() == "summer")
 
 @Client.on_callback_query(process_filter)
-async def zipprocessfile(bot, message):
-     url = message.text
+async def zipprocessfile(bot, callback_query):
+     url = callback_query.message.reply_to_message
      if url.find("zip"):
-        m = await message.reply("Downloading...", quote=True)
+        m = await callback_query.message.reply("Downloading...", quote=True)
         obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
         obj.start()
         tt = obj.get_dl_time(human=True)
@@ -25,7 +25,7 @@ async def zipprocessfile(bot, message):
         LOGGER.info(dl_path)
         filename = dl_path.split("/")[-1]
         await m.delete()
-        sm = await message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
+        sm = await callback_query.message.reply_text(f"`{filename}` Downloaded Successful in {tt}.\n**Now Processing The File**")
         LOGGER.info(f"Downloaded in {dl_path}")
         with zipfile.ZipFile(dl_path, 'r') as zip_files:
                 zip_files.extractall("downloads")
@@ -33,8 +33,8 @@ async def zipprocessfile(bot, message):
         constr = os.listdir(dir_name)
         count = 0
         for list in constr:
-            count += 1
-        countt = await message.reply_text(f"Found {count} files to upload")
+             count += 1
+        countt = await callback_query.message.reply_text(f"Found {count} files to upload")
         #ok = []
         #for ext in ('*.mp4', '*.mkv'):
         #     ok.extend(glob.glob(os.path.join(dir_name, ext)))
@@ -62,9 +62,11 @@ async def zipprocessfile(bot, message):
                   time.sleep(e.x)
         await countt.delete()
         await sm.delete()
-        await message.reply_text("Completed The Task. Now Taking a Sleep Nap")
-        time.sleep(8)
+        com =await callback_query.message.reply_text("Completed The Task. Now Taking a Sleep Nap")
+        time.sleep(5)
+        await com.delete()
         if os.path.isdir("downloads"):
               shutil.rmtree("downloads")
      else:
-        return await message.reply_text("This Is Not A Zip File. \nSend A Link Which Has zip in the url in it.", reply_to_message_id=message.message_id)      
+        await callback_query.message.reply_text("This Is Not A Zip File. \nSend A Link Which Has zip in the url in it.", reply_to_message_id=callback_query.message.message_id)
+         return      
