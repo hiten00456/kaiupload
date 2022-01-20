@@ -21,12 +21,13 @@ async def zipprocessfile(bot, callback_query):
      await callback_query.message.delete()
      if url.find("zip"):
         m = await callback_query.message.reply("Downloading...", quote=True)
-        startime = time.time()
-        filename = wget.download(url, Config.DL_LOCATION)
+        filename = wget.detect_filename(url)
         dl_path = os.path.join(Config.DL_LOCATION, filename)
+        startime = time.time()
+        wget.download(url, dl_path)
+        endtime = time.time()
         LOGGER.info(dl_path)
         await m.delete()
-        endtime = time.time()
         tt = endtime - startime
         sm = await callback_query.message.reply_text(f"`{filename}` Downloaded Successfully in {tt}.\n**Now Processing The File**")
         LOGGER.info(f"Downloaded in {dl_path}")
