@@ -16,6 +16,7 @@ process_filter = filters.create(lambda _, __, query: query.data.lower() == "summ
 @Client.on_callback_query(process_filter)
 async def zipprocessfile(bot, callback_query):
      url = callback_query.message.reply_to_message
+     await callback_query.message.delete()
      if url.find("zip"):
         m = await callback_query.message.reply("Downloading...", quote=True)
         obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
@@ -69,4 +70,4 @@ async def zipprocessfile(bot, callback_query):
               shutil.rmtree("downloads")
      else:
         await callback_query.message.reply_text("This Is Not A Zip File. \nSend A Link Which Has zip in the url in it.", reply_to_message_id=callback_query.message.message_id)
-         return      
+        return      
