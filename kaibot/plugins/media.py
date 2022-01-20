@@ -15,7 +15,7 @@ process_filter = filters.create(lambda _, __, query: query.data.lower() == "summ
 
 @Client.on_callback_query(process_filter)
 async def zipprocessfile(bot, callback_query):
-     url = callback_query.message.reply_to_message
+     url = callback_query.message.reply_to_message.text
      await callback_query.message.delete()
      if url.find("zip"):
         m = await callback_query.message.reply("Downloading...", quote=True)
