@@ -44,7 +44,7 @@ async def zipprocessfile(bot, callback_query):
         count = 0
         for list in constr:
              if list == "desktop.ini":
-                 os.remove(f"{dir_name}/list")
+                 os.remove(f"{dir_name}/{list}")
                  count -= 1
              elif os.path.isdir(os.path.join(dir_name, list)):
                  shutil.rmtree(os.path.join(dir_name, list))
