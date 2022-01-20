@@ -30,9 +30,15 @@ async def zipprocessfile(bot, callback_query):
         tt = endtime - startime
         sm = await callback_query.message.reply_text(f"`{filename}` Downloaded Successfully in {tt}.\n**Now Processing The File**")
         LOGGER.info(f"Downloaded in {dl_path}")
-        with zipfile.ZipFile(dl_path, 'r') as zip_files:
-                zip_files.extractall("downloads")
-        dir_name = dl_path.replace(".zip", "")
+        with zipfile.ZipFile(dl_path, 'r') as zipObj:
+                zipObj.extractall("downloads")
+                dir_name = dl_path.replace(".zip", "")
+        if not os.path.exists(dir_name):
+             await callback_query.message.reply_text("Got Some Error in File")
+             await sm.delete()
+             return
+        else:
+             pass
         constr = os.listdir(dir_name)
         count = 0
         for list in constr:
