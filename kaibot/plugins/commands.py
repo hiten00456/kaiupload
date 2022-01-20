@@ -91,6 +91,7 @@ async def majnprocess(bot, message):
       else:
            await message.reply_text(
                  text="Choose Your Option", 
+                 reply_to_message_id=message.message_id,
                  reply_markup=InlineKeyboardMarkup(
                        [
                            [InlineKeyboardButton("⚡ Thunder ⚡", callback_data="summer")],
