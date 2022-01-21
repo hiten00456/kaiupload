@@ -8,8 +8,7 @@ import zipfile
 import time
 import glob
 import shutil
-# from pySmartDL import SmartDl
-import wget
+from pySmartDL import SmartDl
 from pyrogram.errors import FloodWait
 
 process_filter = filters.create(lambda _, __, query: query.data.lower() == "summer")
@@ -35,7 +34,7 @@ async def zipprocessfile(bot, callback_query):
                 zipObj.extractall("downloads")
                 dir_name = dl_path.replace(".zip", "")
         if not os.path.exists(dir_name):
-             await callback_query.message.reply_text("Got Some Error in File")
+             await callback_query.message.reply_text("Got Some Error while extracting")
              await sm.delete()
              return
         else:
