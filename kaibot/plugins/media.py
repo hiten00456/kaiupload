@@ -20,12 +20,11 @@ async def zipprocessfile(bot, callback_query):
      await callback_query.message.delete()
      if url.find("zip"):
         m = await callback_query.message.reply("Downloading...", quote=True)
-        filename = wget.detect_filename(url)
-        dl_path = os.path.join(Config.DL_LOCATION, filename)
         obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
         obj.start()
         tt = obj.get_dl_time(human=True)
         dl_path = obj.get_dest()
+        filename = dl_path.split("/")[-1]
         LOGGER.info(dl_path)
         await m.delete()
         sm = await callback_query.message.reply_text(f"`{filename}` Downloaded Successfully in {tt}.\n**Now Processing The File**")
@@ -51,12 +50,12 @@ async def zipprocessfile(bot, callback_query):
              else:
                  count += 1
         countt = await callback_query.message.reply_text(f"Found {count} files to upload")
-        #ok = []
-        #for ext in ('*.mp4', '*.mkv'):
-        #     ok.extend(glob.glob(os.path.join(dir_name, ext)))
-        ok = glob.glob(f"{dir_name}/*.mkv")
-        files = [*sorted(ok)]
-        #files = ok.sort()
+        ok = os.listdir(dir_name)
+        files = []
+        for file in ok:
+              file = os.path.join(path, file)
+              files.append(file)
+        files = ok.sort()
         thum = "thumb.jpeg"
         for file in files:
                try:
