@@ -23,12 +23,12 @@ async def zipprocessfile(bot, callback_query):
         m = await callback_query.message.reply("Downloading...", quote=True)
         filename = wget.detect_filename(url)
         dl_path = os.path.join(Config.DL_LOCATION, filename)
-        startime = time.time()
-        wget.download(url, dl_path)
-        endtime = time.time()
+        obj = SmartDL(url, Config.DL_LOCATION, progress_bar=False)
+        obj.start()
+        tt = obj.get_dl_time(human=True)
+        dl_path = obj.get_dest()
         LOGGER.info(dl_path)
         await m.delete()
-        tt = endtime - startime
         sm = await callback_query.message.reply_text(f"`{filename}` Downloaded Successfully in {tt}.\n**Now Processing The File**")
         LOGGER.info(f"Downloaded in {dl_path}")
         with zipfile.ZipFile(dl_path, 'r') as zipObj:
