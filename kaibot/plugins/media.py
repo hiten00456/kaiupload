@@ -53,9 +53,9 @@ async def zipprocessfile(bot, callback_query):
         ok = os.listdir(dir_name)
         files = []
         for file in ok:
-              file = os.path.join(path, file)
+              file = os.path.join(dir_name, file)
               files.append(file)
-        files = ok.sort()
+        files = files.sort()
         thum = "thumb.jpeg"
         for file in files:
                try:
