@@ -60,22 +60,24 @@ async def zipprocessfile(bot, callback_query):
         for file in files:
                try:
                  start = time.time()
-                 check = await Anibot.send_message(chat_id=Config.CHANNEL_ID, text=f"Uploading {file}")
+                 filenamelist = file.split("/")[-1]
+                 check = await Anibot.send_message(chat_id=Config.CHANNEL_ID, text=f"Uploading {filenamelist}")
                  LOGGER.info(f"Uploading - {file}")
                  await Anibot.send_document(
                     chat_id=Config.CHANNEL_ID,
                     document=file,
-                    caption=f"◎`{file}`\n\n**⌬ Uploaded By @Anime_Troop**",
+                    caption=f"◎`{filenamelist}`\n\n**⌬ Uploaded By @Anime_Troop**",
                     thumb=thum,
                     force_document=True,
                     progress=progress_for_pyrogram,
                     progress_args=(bot, check, "🅄🄿🄻🄾🄰🄳🄸🄽🄶", start)
                   )
+                 await check.delete()
                except FloodWait as e:
                   time.sleep(e.x)
         await countt.delete()
         await sm.delete()
-        com =await callback_query.message.reply_text("Completed The Task. Now Taking a Sleep Nap")
+        com = await callback_query.message.reply_text("Completed The Task. Now Taking a Sleep Nap")
         time.sleep(5)
         await com.delete()
         if os.path.isdir("downloads"):
