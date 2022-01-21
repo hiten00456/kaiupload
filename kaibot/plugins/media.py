@@ -8,7 +8,7 @@ import zipfile
 import time
 import glob
 import shutil
-from pySmartDL import SmartDl
+from pySmartDL import SmartDL
 from pyrogram.errors import FloodWait
 
 process_filter = filters.create(lambda _, __, query: query.data.lower() == "summer")
