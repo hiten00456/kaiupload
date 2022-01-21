@@ -60,7 +60,7 @@ async def zipprocessfile(bot, callback_query):
         for file in files:
                try:
                  start = time.time()
-                 check = await Anibot.send_text(chat_id=Config.CHANNEL_ID, text=f"Uploading {file}")
+                 check = await Anibot.send_message(chat_id=Config.CHANNEL_ID, text=f"Uploading {file}")
                  LOGGER.info(f"Uploading - {file}")
                  await Anibot.send_document(
                     chat_id=Config.CHANNEL_ID,
