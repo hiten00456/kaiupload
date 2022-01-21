@@ -68,7 +68,6 @@ async def zipprocessfile(bot, callback_query):
                     caption=f"◎`{file}`\n\n**⌬ Uploaded By @Anime_Troop**",
                     thumb=thum,
                     force_document=True,
-                    quote=True, 
                     progress=progress_for_pyrogram,
                     progress_args=(bot, check, "🅄🄿🄻🄾🄰🄳🄸🄽🄶", start)
                   )
