@@ -13,4 +13,3 @@ AUTH_URSERS = set()
 achats = Config.AUTH_USERS.split(" ")
 for chats in achats:
     AUTH_USERS.add(int(chats))
-LOGGER.info("Added The USERS")
