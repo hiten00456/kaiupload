@@ -1,5 +1,6 @@
 import logging
 from .starter import Kai84AnimeBoT
+from config import Config
 
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO,
@@ -8,3 +9,8 @@ logging.basicConfig(level=logging.INFO,
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 Anibot = Kai84AnimeBoT()
+AUTH_URSERS = set()
+achats = Config.AUTH_USERS.split(" ")
+for chats in achats:
+    AUTH_USERS.add(int(chats))
+LOGGER.info("Added The USERS")
