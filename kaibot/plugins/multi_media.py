@@ -28,7 +28,6 @@ async def multi_up_file(bot, callback_query):
               return
        tt = obj.get_dl_time(human=True)
        dl_path = obj.get_dest()
-       filename = dl_path.split("/")[-1]
        LOGGER.info(dl_path)
        if bool(smartdlobj.get_errors()):
            err = "SmartDl Error:-\n" + smartdlobj.get_errors()
@@ -42,6 +41,7 @@ async def multi_up_file(bot, callback_query):
            LOGGER.info(dl_path)
            com = await m.edit(f"**Downloaded Successfully {filename} in {tt}")
            time.sleep(2)
+           await com.delete()
            if zipfile.is_zipfile(dl_path):
                 await zipp(bot, com, msg, dl_path)
            if rarfile.is_rarfile(dl_path):
