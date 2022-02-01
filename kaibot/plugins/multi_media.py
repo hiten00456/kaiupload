@@ -42,11 +42,11 @@ async def multi_up_file(bot, callback_query):
            com = await m.edit(f"**Downloaded Successfully {filename} in {tt}")
            time.sleep(2)
            if zipfile.is_zipfile(dl_path):
-                await zipp(bot, com, msg, dl_path)
+                await zipp(bot, com, msg, dl_path, tt)
            if rarfile.is_rarfile(dl_path):
-                await rarr(bot, com, msg, dl_path)
+                await rarr(bot, com, msg, dl_path, tt)
            if tarfile.is_tarfile(dl_path):
-                await tarr(bot, com, msg, dl_path)
+                await tarr(bot, com, msg, dl_path, tt)
            com = await callback_query.message.reply_text("**Completed The Task. Now Taking a Sleep Nap of 7 secends**")
            time.sleep(7)
            if os.path.isdir("downloads"):
