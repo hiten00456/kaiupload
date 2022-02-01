@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO,
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 Anibot = Kai84AnimeBoT()
-AUTH_URSERS = set()
+AUTH_URSERS = []
 achats = Config.AUTH_USERS.split(" ")
 for chats in achats:
-    AUTH_USERS.add(int(chats))
+    AUTH_USERS.append(int(chats))
