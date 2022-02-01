@@ -16,7 +16,7 @@ single_op = filters.create(lambda _, __, query: query.data.lower() == "single_op
 @Client.on_callback_query(single_op)
 async def single_up_file(bot, callback_query):
      msg = callback_query.message.reply_to_message
-     if msg.from_user.id not in AUTH_URSERS:
+     if msg.from_user.id not in AUTH_USERS:
         await msg.reply("**Sorry, But Can U Fuck Get Out Of This Bot.\n\nU Can't Use This Bot**", quote=True)
      else:
         url = msg.text
