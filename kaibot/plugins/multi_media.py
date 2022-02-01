@@ -13,7 +13,7 @@ cuple_op = filters.create(lambda _, __, query: query.data.lower() == "couple_op"
 @Anibot.on_callback_query(couple_op)
 async def multi_up_file(bot, callback_query):
     msg = callback_query.message.reply_to_message
-    if msg.from_user.id is not in AUTH_USERS:
+    if msg.from_user.id not in AUTH_USERS:
        return await msg.reply("**Sorry, But Can U Fuck Get Out Of This Bot.\n\nU Can't Use This Bot**", quote=True)
     else:
        url = main.text
