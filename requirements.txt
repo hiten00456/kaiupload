@@ -2,5 +2,5 @@ TgCrypto
 Pyrogram
 wget
 pySmartDL
-jikanpy
-requests
+rarfile
+tarfile
