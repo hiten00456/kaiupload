@@ -18,7 +18,7 @@ async def multi_up_file(bot, callback_query):
     else:
        url = main.text
        await callback_query.message.delete()
-       m = await callback_query.message.reply("Downloading...", quote=True)
+       m = await msg.reply("Downloading...", quote=True)
        smartdlobj = SmartDL(url, Config.DL_LOCATION, verify=False, progress_bar=False)
           try:
               smartdlobj.start(blocking=True)
@@ -28,6 +28,7 @@ async def multi_up_file(bot, callback_query):
               return
        tt = obj.get_dl_time(human=True)
        dl_path = obj.get_dest()
+       filename = dl_path.split("/")[-1]
        LOGGER.info(dl_path)
        if bool(smartdlobj.get_errors()):
            err = "SmartDl Error:-\n" + smartdlobj.get_errors()
@@ -42,11 +43,11 @@ async def multi_up_file(bot, callback_query):
            com = await m.edit(f"**Downloaded Successfully {filename} in {tt}")
            time.sleep(2)
            if zipfile.is_zipfile(dl_path):
-                await zipp(bot, com, msg, dl_path, tt)
+                await zipp(bot, com, msg, dl_path)
            if rarfile.is_rarfile(dl_path):
-                await rarr(bot, com, msg, dl_path, tt)
+                await rarr(bot, com, msg, dl_path)
            if tarfile.is_tarfile(dl_path):
-                await tarr(bot, com, msg, dl_path, tt)
+                await tarr(bot, com, msg, dl_path)
            com = await callback_query.message.reply_text("**Completed The Task. Now Taking a Sleep Nap of 7 secends**")
            time.sleep(7)
            if os.path.isdir("downloads"):
