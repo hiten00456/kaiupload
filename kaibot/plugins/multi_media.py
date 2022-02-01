@@ -20,12 +20,12 @@ async def multi_up_file(bot, callback_query):
        await callback_query.message.delete()
        m = await msg.reply("Downloading...", quote=True)
        smartdlobj = SmartDL(url, Config.DL_LOCATION, verify=False, progress_bar=False)
-          try:
-              smartdlobj.start(blocking=True)
-          except Exception as e:
-              await m.delete()
-              await msg.reply(f"Dl ERROR:-\n**Type:-**\n{type(e)}\nReason:-\n{e}", quote=True)
-              return
+       try:
+           smartdlobj.start(blocking=True)
+       except Exception as e:
+           await m.delete()
+           await msg.reply(f"Dl ERROR:-\n**Type:-**\n{type(e)}\nReason:-\n{e}", quote=True)
+           return
        tt = obj.get_dl_time(human=True)
        dl_path = obj.get_dest()
        LOGGER.info(dl_path)
