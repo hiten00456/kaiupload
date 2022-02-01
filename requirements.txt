@@ -2,4 +2,3 @@ TgCrypto
 Pyrogram
 wget
 pySmartDL
-tarfile
