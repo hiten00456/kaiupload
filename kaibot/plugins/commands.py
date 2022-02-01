@@ -69,7 +69,7 @@ async def majnprocess(bot, message):
       uid = message.from_user.id
       uname = message.from_user.first_name
       A = f"[{uname}](tg://user?id={uid}) Choose The Option To Get Get Processed Accordingly."
-      if uid not in AUTH_URSERS:
+      if uid not in AUTH_USERS:
            await message.reply_text("**Sorry, But Can U Fuck Get Out Of This Bot. \n\nU Can't Use This Bot**")
            return
       else:
