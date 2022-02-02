@@ -49,7 +49,7 @@ async def zipp(bot, com, msg, dl_path):
              start = time.time()
              filenamelist = file.split("/")[-1]
              channelmsg = await Anibot.send_message(chat_id=Config.CHANNEL_ID, text=f"Uploading - `{filenamelist}`")
-             check = await msg.reply(f"Uploading - `{filenamelist}`")
+             check = await msg.reply(f"Uploading - {filenamelist}", quote=True)
             # LOGGER.info(f"Uploading - {file}")
              await Anibot.send_document(
                  chat_id=Config.CHANNEL_ID,
@@ -108,7 +108,7 @@ async def tarr(bot, com, msg, dl_path):
              start = time.time()
              filenamelist = file.split("/")[-1]
              channelmsg = await Anibot.send_message(chat_id=Config.CHANNEL_ID, text=f"Uploading - `{filenamelist}`")
-             check = await msg.reply(f"Uploading - `{filenamelist}`")
+             check = await msg.reply(f"Uploading - {filenamelist}", quote=True)
             # LOGGER.info(f"Uploading - {file}")
              await Anibot.send_document(
                  chat_id=Config.CHANNEL_ID,
@@ -121,7 +121,7 @@ async def tarr(bot, com, msg, dl_path):
              )
              time.sleep(2)
              await channelmsg.delete()
-             await chech.delete()
+             await check.delete()
           except FloodWait as e:
              time.sleep(e.x)
     complete=await msg.reply("Completed The Task. Now Taking a Sleep Nap", quote=True)
@@ -168,7 +168,7 @@ async def rarr(bot, com, msg, dl_path):
              start = time.time()
              filenamelist = file.split("/")[-1]
              channelmsg = await Anibot.send_message(chat_id=Config.CHANNEL_ID, text=f"Uploading - `{filenamelist}`")
-             check = await msg.reply(f"Uploading - `{filenamelist}`")
+             check = await msg.reply(f"Uploading - {filenamelist}", quote=True)
             # LOGGER.info(f"Uploading - {file}")
              await Anibot.send_document(
                  chat_id=Config.CHANNEL_ID,
@@ -181,7 +181,7 @@ async def rarr(bot, com, msg, dl_path):
              )
              time.sleep(2)
              await channelmsg.delete()
-             await chech.delete()
+             await check.delete()
           except FloodWait as e:
              time.sleep(e.x)
     complete=await msg.reply("Completed The Task. Now Taking a Sleep Nap", quote=True)
