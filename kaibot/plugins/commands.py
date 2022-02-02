@@ -2,7 +2,7 @@
 # import json
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from .. import Anibot, LOGGER, AUTH_USERS
+from kaibot import Anibot, LOGGER, AUTH_USERS
 from config import Config
 # from kaibot.helping import cmdhelp 
 # from ..helpers.search import shorten, anime_query, GRAPHQL
