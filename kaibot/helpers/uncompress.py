@@ -1,10 +1,11 @@
 from ..helpers.progress import progress_for_pyrogram
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from pyrogram.types import Message
 from .. import Anibot, LOGGER
 from config import Config
 import os, time
 import shutil
 import zipfile, rarfile, tarfile
+from pyrogram.errors import FloodWait
 
 
 
@@ -61,7 +62,7 @@ async def zipp(bot, com, msg, dl_path):
              )
              time.sleep(2)
              await channelmsg.delete()
-             await chech.delete()
+             await check.delete()
           except FloodWait as e:
              time.sleep(e.x)
     complete=await msg.reply("Completed The Task. Now Taking a Sleep Nap", quote=True)
