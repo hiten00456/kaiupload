@@ -16,7 +16,7 @@ async def multi_up_file(bot, callback_query):
     if msg.from_user.id not in AUTH_USERS:
        return await msg.reply("**Sorry, But Can U Fuck Get Out Of This Bot.\n\nU Can't Use This Bot**", quote=True)
     else:
-       url = main.text
+       url = msg.text
        await callback_query.message.delete()
        m = await msg.reply("Downloading...", quote=True)
        smartdlobj = SmartDL(url, Config.DL_LOCATION, verify=False, progress_bar=False)
