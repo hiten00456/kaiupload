@@ -1,7 +1,7 @@
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pyrogram import Client, filters
 from config import Config
-from .. import Anibot, LOGGER, AUTH_USERS
+from kaibot import Anibot, LOGGER, AUTH_USERS
 from ..helpers.uncompress import zipp, rarr, tarr
 import os
 import zipfile, rarfile, tarfile
