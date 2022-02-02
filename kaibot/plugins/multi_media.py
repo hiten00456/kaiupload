@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from config import Config
 from kaibot import Anibot, LOGGER, AUTH_USERS
 from ..helpers.uncompress import zipp, rarr, tarr
-import os
+import os, time
 import zipfile, rarfile, tarfile
 import shutil
 from pySmartDL import SmartDL
