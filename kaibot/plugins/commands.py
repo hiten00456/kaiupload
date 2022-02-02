@@ -52,7 +52,7 @@ async def forward_message(client, message):
     if message.from_user.id in AUTH_USERS:
        if message.reply_to_message is not None:
           post = message.reply_to_message
-          await post.forward(Config.CHANNEL_ID)
+          await post.copy(Config.CHANNEL_ID)
        #elif " " in message:
        #   post = message.split(" ", 1)[-1]
        #   await post.forward(Config.CHANNEL_ID)
