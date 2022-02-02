@@ -8,7 +8,7 @@ import zipfile, rarfile, tarfile
 import shutil
 from pySmartDL import SmartDL
 
-cuple_op = filters.create(lambda _, __, query: query.data.lower() == "couple_op")
+couple_op = filters.create(lambda _, __, query: query.data.lower() == "couple_op")
 
 @Anibot.on_callback_query(couple_op)
 async def multi_up_file(bot, callback_query):
