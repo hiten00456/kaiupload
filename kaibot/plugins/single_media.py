@@ -2,7 +2,7 @@ from ..helpers.progress import progress_for_pyrogram
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pyrogram import Client, filters
 from config import Config
-from kaibot import Anibot, LOGGER, AUTH_URSERS
+from kaibot import Anibot, LOGGER, AUTH_USERS
 import os
 import zipfile
 import time
