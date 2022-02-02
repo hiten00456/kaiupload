@@ -10,17 +10,18 @@ import zipfile, rarfile, tarfile
 
 # Zip Process
 async def zipp(bot, com, msg, dl_path):
-    filename = dl_path.split("/")[-1]
-    sm = await msg.reply(f"`{filename}` Downloaded Successfully in {tt}.", quote=True)
+    filename=dl_path.split("/")[-1]
+    sm = await msg.reply("Processing The File For U", quote=True)
     with zipfile.ZipFile(dl_path, 'r') as zipObj:
         zipObj.extractall("downloads")
         dir_name = dl_path.replace(".zip", "")
     if not os.path.exists(dir_name):
+        shutil.rmtree(dir_name)
         await sm.edit("Got Some Error while extracting")
         return
     else:
+        await sm.delete()
         st = await msg.reply("Processed The File Now Uploading Will Start Soon")
-        pass
     ok = os.listdir(dir_name)
     c = 0
     for list in ok:
@@ -69,17 +70,18 @@ async def zipp(bot, com, msg, dl_path):
 
 # Tar Process
 async def tarr(bot, com, msg, dl_path):
-    filename = dl_path.split("/")[-1]
-    sm = await msg.reply(f"`{filename}` Downloaded Successfully in {tt}.", quote=True)
+    filename=dl_path.split("/")[-1]
+    sm = await msg.reply("Processing The File", quote=True)
     with tarfile.TarFile(dl_path, 'r') as tarObj:
         tarObj.extractall("downloads")
         dir_name = dl_path.replace(".tar", "")
     if not os.path.exists(dir_name):
+        shutil.rmtree(dir_name)
         await sm.edit("Got Some Error while extracting")
         return
     else:
+        await sm.delete()
         st = await msg.reply("Processed The File Now Uploading Will Start Soon")
-        pass
     ok = os.listdir(dir_name)
     c = 0
     for list in ok:
@@ -127,15 +129,17 @@ async def tarr(bot, com, msg, dl_path):
 
 # Rar Process
 async def rarr(bot, com, msg, dl_path):
-    filename = dl_path.split("/")[-1]
-    sm = await msg.reply(f"`{filename}` Downloaded Successfully in {tt}.", quote=True)
+    filename=dl_path.split("/")[-1]
+    sm = await msg.reply("Processing The File", quote=True)
     with rarfile.RarFile(dl_path, 'r') as rarObj:
         rarObj.extractall("downloads")
         dir_name = dl_path.replace(".rar", "")
     if not os.path.exists(dir_name):
+        shutil.rmtree(dir_name)
         await sm.edit("Got Some Error while extracting")
         return
     else:
+        await sm.delete()
         st = await msg.reply("Processed The File Now Uploading Will Start Soon")
     ok = os.listdir(dir_name)
     c = 0
