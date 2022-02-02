@@ -67,7 +67,7 @@ async def zipp(bot, com, msg, dl_path):
              time.sleep(e.x)
     complete=await msg.reply("Completed The Task. Now Taking a Sleep Nap", quote=True)
     time.sleep(6)
-    await complete.edit("Completed `{filename}` Task For You")
+    await complete.edit(f"Completed `{filename}` Task For You")
 
 # Tar Process
 async def tarr(bot, com, msg, dl_path):
@@ -126,7 +126,7 @@ async def tarr(bot, com, msg, dl_path):
              time.sleep(e.x)
     complete=await msg.reply("Completed The Task. Now Taking a Sleep Nap", quote=True)
     time.sleep(6)
-    await complete.edit("Completed `{filename}` Task For You")
+    await complete.edit(f"Completed `{filename}` Task For You")
 
 # Rar Process
 async def rarr(bot, com, msg, dl_path):
@@ -186,4 +186,4 @@ async def rarr(bot, com, msg, dl_path):
              time.sleep(e.x)
     complete=await msg.reply("Completed The Task. Now Taking a Sleep Nap", quote=True)
     time.sleep(6)
-    await complete.edit("Completed `{filename}` Task For You")
+    await complete.edit(f"Completed `{filename}` Task For You")
