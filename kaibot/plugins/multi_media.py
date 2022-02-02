@@ -28,6 +28,7 @@ async def multi_up_file(bot, callback_query):
            return
        tt = smartdlobj.get_dl_time(human=True)
        dl_path = smartdlobj.get_dest()
+       filename = dl_path.split("/")[-1]
        LOGGER.info(dl_path)
        if bool(smartdlobj.get_errors()):
            err = "SmartDl Error:-\n" + smartdlobj.get_errors()
