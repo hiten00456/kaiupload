@@ -79,8 +79,6 @@ async def majnprocess(bot, message):
                  reply_markup=InlineKeyboardMarkup(
                        [
                            [InlineKeyboardButton("⚙️Batch⚙️", callback_data="couple_op")],
-                       ],
-                       [
                            [InlineKeyboardButton("⚙️Single⚙️", callback_data="single_op")],
                        ],
                   ),
