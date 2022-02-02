@@ -18,7 +18,7 @@ async def multi_up_file(bot, callback_query):
     else:
        url = msg.text
        await callback_query.message.delete()
-       m = await msg.reply("Downloading...", quote=True)
+       m = await msg.reply("Thunder Speed Download Started", quote=True)
        smartdlobj = SmartDL(url, Config.DL_LOCATION, verify=False, progress_bar=False)
        try:
            smartdlobj.start(blocking=True)
@@ -31,7 +31,7 @@ async def multi_up_file(bot, callback_query):
        filename = dl_path.split("/")[-1]
        LOGGER.info(dl_path)
        if bool(smartdlobj.get_errors()):
-           err = "SmartDl Error:-\n" + smartdlobj.get_errors()
+           err = f"SmartDl Error:-\n{smartdlobj.get_errors()}"
            await m.delete()
            await msg.reply(err, quote=True)
        elif not smartdlobj.isSuccessful():
@@ -40,8 +40,7 @@ async def multi_up_file(bot, callback_query):
            return
        else:
            LOGGER.info(dl_path)
-           await m.delete()
-           com = await msg.reply(f"Downloaded Successfully {filename} in {tt}")
+           await m.edit(f"Downloaded Successfully:-\n **🗂️Name:** `{filename}`\n**⏱️Time Taken:** {tt}")
            time.sleep(3)
            await com.delete()
            if zipfile.is_zipfile(dl_path):
