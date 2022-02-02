@@ -3,3 +3,4 @@ Pyrogram
 wget
 pySmartDL
 requests
+git+https://github.com/markokr/rarfile.git
