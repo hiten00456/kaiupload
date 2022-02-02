@@ -40,9 +40,9 @@ async def multi_up_file(bot, callback_query):
            return
        else:
            LOGGER.info(dl_path)
-           await m.edit(f"Downloaded Successfully:-\n **🗂️Name:** `{filename}`\n**⏱️Time Taken:** {tt}")
+           await m.delete()
+           com = await msg.reply(f"Downloaded Successfully:-\n **🗂️Name:** `{filename}`\n**⏱️Time Taken:** {tt}")
            time.sleep(3)
-           await com.delete()
            if zipfile.is_zipfile(dl_path):
                 await zipp(bot, com, msg, dl_path)
            if rarfile.is_rarfile(dl_path):
