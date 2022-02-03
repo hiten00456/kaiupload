@@ -36,6 +36,7 @@ async def zipp(bot, com, msg, dl_path):
        else:
            c += 1
     await st.delete()
+    ok = os.listdir(dir_name).sort()
     countt = await msg.reply_text(f"Found {c} files to upload")
     files = []
     for file in ok:
@@ -96,6 +97,7 @@ async def tarr(bot, com, msg, dl_path):
        else:
            c += 1
     countt = await msg.reply(f"Found {c} files to upload")
+    ok = os.listdir(dir_name).sort()
     files = []
     for file in ok:
         file = os.path.join(dir_name, file)
@@ -156,6 +158,7 @@ async def rarr(bot, com, msg, dl_path):
            c += 1
     await st.delete()
     countt = await msg.reply_text(f"Found {c} files to upload")
+    ok = os.listdir(dir_name).sort()
     files = []
     for file in ok:
         file = os.path.join(dir_name, file)
